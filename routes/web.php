@@ -3,6 +3,7 @@
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
+use app\Http\Controllers\categorycontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +22,15 @@ Route::get('/', function () {
 
 Route::get('/test_category',function () {
     $post = Category::find(2);
-    echo $post->id;
+    echo $post->name;
 });
 
 Route::get('/test_post',function(){
     $post = Post::find(1);
     echo $post->title;
 });
+Route::get('/test/{id}', function ($id) {
+    $post = Category::find($id);
+    echo $post->name;
+});
+Route::post('/server', categorycontroller::class);
