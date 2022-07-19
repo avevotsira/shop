@@ -17,24 +17,46 @@ use App\Http\Controllers\CateController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get("/", function () {
+    return view("welcome");
 });
 
-Route::get('/test_category',function () {
+Route::get("/test_category", function () {
     $post = Category::find(2);
     echo $post->name;
 });
 
-Route::get('/test_post',function(){
+Route::get("/test_post", function () {
     $post = Post::find(1);
     echo $post->title;
 });
-Route::get('/test/{id}', function ($id) {
+Route::get("/test/{id}", function ($id) {
     $post = Category::find($id);
     echo $post->name;
 });
-Route::resource('/server', categorycontroller::class);
+Route::resource("/server", categorycontroller::class);
 
-Route::resource('/category',  CateController::class);
+Route::resource("/category", CateController::class);
 
+Route::get("/product", [ProductController::class, "index"])->name(
+    "product.index"
+);
+Route::get("/product/create", [ProductController::class, "create"])->name(
+    "product.create"
+);
+Route::post("/product", [ProductController::class, "store"])->name(
+    "product.store"
+);
+Route::get("/product/{product}", [ProductController::class, "show"])->name(
+    "product.show"
+);
+Route::delete("/product/{product}", [
+    ProductController::class,
+    "destroy",
+])->name("product.destroy");
+Route::get("/product/{product}/edit", [ProductController::class, "edit"])->name(
+    "product.edit"
+);
+Route::put("/product/{product}", [ProductController::class, "update"])->name(
+    "product.update"
+);
