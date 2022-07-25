@@ -5,6 +5,7 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\categorycontroller;
 use App\Http\Controllers\CateController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,5 +59,5 @@ Route::get("/product/{product}/edit", [ProductController::class, "edit"])->name(
     "product.edit"
 );
 Route::put("/product/{product}", [ProductController::class, "update"])->name(
-    "product.update"
+    "products.update"
 );

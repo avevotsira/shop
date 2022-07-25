@@ -28,6 +28,7 @@ class CateController extends Controller
         $category = new Category();
         $category->name = $request->name;
         $category->description = $request->description;
+        $category->other = $request->other;
         Session::flash("category_create", "New Category is Created");
         $category->save();
 
@@ -62,6 +63,7 @@ class CateController extends Controller
         $category = Category::find($id);
         $category->name = $request->Input("name");
         $category->description = $request->Input("description");
+        $category->other = $request->Input("other");
         $category->save();
         Session::flash("category_update", "Category is updated.");
         return redirect("category/" . $id . "/edit");
