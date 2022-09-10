@@ -34,8 +34,8 @@
 			{!! Form::text('name', '',array('class'=>'form-control')) !!}
 			{!! Form::label('description', 'Description: ') !!}
 			{!! Form::text('description', '',array('class'=>'form-control')) !!}
-			{!! Form::label('image', 'Image: ') !!}
-			{!! Form::text('image', '',array('class'=>'form-control')) !!}
+			{!! Form::label('other', 'Other: ') !!}
+			{!! Form::text('other', '',array('class'=>'form-control')) !!}
 			{!! Form::submit('Create',array('class'=> 'secondary-cart-btn')) !!}
             {!! Form::close() !!}
 		</div>

@@ -26,45 +26,44 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-  
-    public function create(){
 
-    	return view('product.create');
+    public function create()
+    {
+        return view("product.create");
     }
-	
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-        'name' => 'required|max:20|min:3',
-        'description' => 'required|max:20|min:3',
-        'image' => 'required',
-        'price' => 'required|max:50',
-    ]);
+            "name" => "required|max:20|min:3",
+            "description" => "required|max:20|min:3",
+            "image" => "required",
+            "price" => "required|max:50",
+        ]);
 
-      
-     if ($validator->fails()) {
-        return redirect('product/create')
-            ->withInput()
-            ->withErrors($validator);
-    }
+        if ($validator->fails()) {
+            return redirect("product/create")
+                ->withInput()
+                ->withErrors($validator);
+        }
 
-    // Create The product
-  
-    $image = $request->file('image');
-    $upload = 'img/';
-    $filename = time().$image->getClientOriginalName();
-    $path = move_uploaded_file($image->getPathName(), $upload. $filename);
+        // Create The product
 
-    $product = new product;
-    $product->name = $request->name;
-    $product->description = $request->description;
-    $product->image = $filename;
-    $product->price = $request->price;
-    $product->save();
+        $image = $request->file("image");
+        $upload = "img/";
+        $filename = time() . $image->getClientOriginalName();
+        $path = move_uploaded_file($image->getPathName(), $upload . $filename);
 
-    Session::flash('post_create','New Post is Created');
+        $product = new product();
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->image = $filename;
+        $product->price = $request->price;
+        $product->save();
 
-    return redirect('product/create');
+        Session::flash("post_create", "New Post is Created");
+
+        return redirect("product/create");
     }
     public function edit($id)
     {
@@ -73,7 +72,6 @@ class ProductController extends Controller
     }
 
     public function update(Request $request, $id)
-
     {
         $product = Product::find($id);
         $validator = Validator::make($request->all(), [
@@ -86,38 +84,39 @@ class ProductController extends Controller
                 ->withErrors($validator);
         }
 
-        $image = $request->file('image');
-    $upload = 'img/';
-    $filename = time().$image->getClientOriginalName();
-    $path = move_uploaded_file($image->getPathName(), $upload. $filename);
+        $image = $request->file("image");
+        $upload = "img/";
+        $filename = time() . $image->getClientOriginalName();
+        $path = move_uploaded_file($image->getPathName(), $upload . $filename);
 
-    
-    $product->name = $request->Input('name');
-    $product->description = $request->description;
-   if($filename) $product->image = $filename;
-    $product->price = $request->price;
-    $product->save();
-   
-    Session::flash('post_update','Post is Updated');
-    return redirect('product');
-    
+        $product->name = $request->Input("name");
+        $product->description = $request->description;
+        if ($filename) {
+            $product->image = $filename;
+        }
+        $product->price = $request->price;
+        $product->save();
+
+        Session::flash("post_update", "Post is Updated");
+        return redirect("product");
     }
-    public function destroy($id) {
-    	$post = Product::find($id);
+    public function destroy($id)
+    {
+        $post = Product::find($id);
 
-    	$image_path = 'img/'.$post->image;
-    	    File::delete($image_path);
+        $image_path = "img/" . $post->image;
+        File::delete($image_path);
 
-    	$post->delete();
+        $post->delete();
 
-    	Session::flash('post_delete','Post is Delete');
+        Session::flash("post_delete", "Post is Delete");
 
-    	return redirect('product');
+        return redirect("product");
     }
 }
 // {
 //     $validator = Validator::make($request->all(), [
-        
+
 //         'name' => 'required|max:20|min:3',
 //         'description' => 'required|max:20|min:3',
 //         'image' => 'mimes:jpg,jpeg,png,gif',
@@ -137,7 +136,6 @@ class ProductController extends Controller
 //         $filename = time().$image->getClientOriginalName();
 //         $path = move_uploaded_file($image->getPathName(), $upload. $filename);
 //     }
-    
 
 //     $product->name = $request->Input('name');
 //     $product->description = $request->Input('description');

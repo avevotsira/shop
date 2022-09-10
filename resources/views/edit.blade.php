@@ -32,10 +32,14 @@
            	{!! Form::text('name',null, array('class'=>'form-control')) !!}
             <br>
             {!! Form::label('description', 'Description:') !!}
-           	{!! Form::textarea('description',null, array('class'=>'form-control')) !!}
+           	{!! Form::text('description',null, array('class'=>'form-control')) !!}
             <br>
+            {!! Form::label('other', 'Other:') !!}
+           	{!! Form::text('other',null, array('class'=>'form-control')) !!}
+            </br>  
            	{!! Form::submit('Update', array('class'=>'btn btn-primary')) !!}
            	{!! Form::close() !!}
+            </br> 
 			</div>
 		</div>	
 	</div>

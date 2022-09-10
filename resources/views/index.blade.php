@@ -17,6 +17,8 @@
                     <thead>
                         <th>ID</th>
                         <th>Name</th>
+                        <th>Description</th>
+                        <th>Other</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </thead>
@@ -28,6 +30,12 @@
                             </td>
                             <td>
                                 {!! $category->name !!}
+                            </td>
+                            <td>
+                                {!! $category->description !!}
+                            </td>
+                            <td>
+                                {!! $category->other !!}
                             </td>
                             <td><a class="btn btn-primary" href="{!! url('category/' . $category->id . '/edit') !!}">Edit</a></td>
                             @if(Session::has('category_delete'))
