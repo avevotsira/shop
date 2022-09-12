@@ -39,6 +39,16 @@ Route::resource("/server", categorycontroller::class);
 
 Route::resource("/category", CateController::class);
 
+Route::get("/category/{id}/viewdetail", function ($id) {
+    $category = Category::find($id);
+    return view("viewdetail")->with("category", $category);
+ 
+});
+
+Route::get("/viewdetail", [CateController::class, "index"])->name(
+    "product.index"
+);
+
 Route::get("/product", [ProductController::class, "index"])->name(
     "product.index"
 );
@@ -61,3 +71,11 @@ Route::get("/product/{product}/edit", [ProductController::class, "edit"])->name(
 Route::put("/product/{product}", [ProductController::class, "update"])->name(
     "products.update"
 );
+//Chat App
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

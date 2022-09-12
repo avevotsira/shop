@@ -3,11 +3,19 @@
 @section('content')
 <main>
 <div class="container-fluid">
-		<h1 class="mt-4">Category</h1>
+		<h1 class="mt-4">Test</h1>
 		<ol class="breadcrumb mb-4">
-			<li class="breadcrumb-item"><a href="index.html">View All Category </a></li>
-			<li class="breadcrumb-item active"><a href="category/create">Create category</a></li>
-
+			<li class="breadcrumb-item active"><a href="category/create">Create New Test</a></li>
+<h2>
+{!! Form::open(array('url'=>'/category','method'=>'get')) !!}
+                    <div class="input-group">
+                        {!! Form::text('keyword',$keyword ?? '', array('placeholder'=>'Search', 'class'=>'form-control')) !!}
+                        <span class="input-group-btn">
+                            {!! Form::submit('search',array('class'=>'btn btn-primary')) !!}
+                        </span>
+                    </div>
+                    {!! Form::close() !!}
+</h2>
 	</div>
     <div class="container-fluid">
       <div class="card mb-4">
@@ -17,10 +25,11 @@
                     <thead>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Description</th>
-                        <th>Other</th>
+                        <th>Duration</th>
+                        <th>Type</th>
                         <th>Edit</th>
                         <th>Delete</th>
+                        <th>View Detail</th>
                     </thead>
                     <tbody>
                         @foreach ($categories as $category)
@@ -32,10 +41,10 @@
                                 {!! $category->name !!}
                             </td>
                             <td>
-                                {!! $category->description !!}
+                                {!! $category->duration !!}
                             </td>
                             <td>
-                                {!! $category->other !!}
+                                {!! $category->type !!}
                             </td>
                             <td><a class="btn btn-primary" href="{!! url('category/' . $category->id . '/edit') !!}">Edit</a></td>
                             @if(Session::has('category_delete'))
@@ -52,6 +61,7 @@
                             	<button class="btn btn-danger delete">Delete</button>
                                 {!! Form::close() !!} 
                             </td>
+                            <td><a class="btn btn-primary" href="{!! url('category/' . $category->id . '/viewdetail') !!}">View Detail</a></td>
                         </tr>
                         @endforeach
                     </tbody>

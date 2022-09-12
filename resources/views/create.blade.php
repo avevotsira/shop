@@ -3,9 +3,9 @@
 @section('content')
 <main>
 	<div class="container-fluid">
-		<h1 class="mt-4">Create Category</h1>
+		<h1 class="mt-4">Create Test</h1>
 		<ol class="breadcrumb mb-4">
-			<li class="breadcrumb-item"><a href="/category">View All Category </a></li>
+			<li class="breadcrumb-item"><a href="/category">View All Test </a></li>
 			@if(Session::has('category_create'))
 <div class="alert alert-success"><em>{!! session('category_create') !!}</em>
 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times</span></button>    
@@ -32,10 +32,10 @@
 			{!! Form::open(['url' => 'category']) !!}
 			{!! Form::label('name', 'Name: ') !!}
 			{!! Form::text('name', '',array('class'=>'form-control')) !!}
-			{!! Form::label('description', 'Description: ') !!}
-			{!! Form::text('description', '',array('class'=>'form-control')) !!}
-			{!! Form::label('other', 'Other: ') !!}
-			{!! Form::text('other', '',array('class'=>'form-control')) !!}
+			{!! Form::label('duration', 'Duration: ') !!}
+			{!! Form::text('duration', '',array('class'=>'form-control')) !!}
+			{!! Form::label('type', 'Type: ') !!}
+			{!! Form::text('type', '',array('class'=>'form-control')) !!}
 			{!! Form::submit('Create',array('class'=> 'secondary-cart-btn')) !!}
             {!! Form::close() !!}
 		</div>
